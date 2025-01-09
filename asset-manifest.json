@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/platonus-exams/static/css/main.eaf548a0.css",
+    "main.js": "/platonus-exams/static/js/main.f5ce659f.js",
+    "index.html": "/platonus-exams/index.html",
+    "main.eaf548a0.css.map": "/platonus-exams/static/css/main.eaf548a0.css.map",
+    "main.f5ce659f.js.map": "/platonus-exams/static/js/main.f5ce659f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eaf548a0.css",
+    "static/js/main.f5ce659f.js"
+  ]
+}
