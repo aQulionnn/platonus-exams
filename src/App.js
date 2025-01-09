@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
+import QuestionCard from "./components/QuestionCard/QuestionCard";
+
 function App() {
   return (
     <div className="App">
-      Hi
+      <QuestionCard />
     </div>
   );
 }
 
-export default App;
+export default App

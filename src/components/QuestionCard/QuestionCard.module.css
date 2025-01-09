@@ -1,0 +1,59 @@
+.streak {
+  margin-bottom: 25px;
+}
+
+.card {
+  width: 90dvw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-card {
+  width: 90dvw;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-name {
+  text-align: center;
+  font-weight: 500;
+}
+
+.question-answer {
+  font-size: 12px;
+}
+
+.question-answer-btn {
+  accent-color: #00b4d8;
+}
+
+.answer-result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.correct {
+  color: #70e000;
+}
+
+.incorrect {
+  color: #ef233c;
+}
+
+.next-button {
+  margin-top: 10px;
+  width: 125px;
+  align-self: center;
+  background-color: #73ba9b;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 0;
+}
+
+
