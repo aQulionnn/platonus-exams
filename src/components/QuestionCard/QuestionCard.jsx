@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import style from "./QuestionCard.module.css"
 
 function QuestionCard() {
@@ -24,7 +24,7 @@ function QuestionCard() {
     return { shuffledVariants, correctAnswer: correct }
   }
 
-  const loadNewQuestion = () => {
+  const loadNewQuestion = useCallback(() => {
     fetch("assets/files/engineering.txt")
       .then((res) => res.text())
       .then((text) => {
@@ -37,22 +37,22 @@ function QuestionCard() {
           .slice(1, 6)
           .map((line) => line.replace("<variant>", ""))
         const correct = questionText[1].replace("<variant>", "")
-
+  
         const { shuffledVariants, correctAnswer } = shuffleVariants(
           variants,
           correct
         )
-
+  
         setQuestionName(name)
         setVariants(shuffledVariants)
         setCorrectAnswer(correctAnswer)
       })
       .catch((e) => console.error(e))
-  }
+  }, [])
 
   useEffect(() => {
     loadNewQuestion()
-  }, [])
+  }, [loadNewQuestion])
 
   const handleAnswerChange = (e) => {
     const answer = e.target.value
