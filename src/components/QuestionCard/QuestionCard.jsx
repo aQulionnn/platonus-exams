@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import style from "./QuestionCard.module.css"
+import { toast, Toaster } from "react-hot-toast"
 
 function QuestionCard() {
   const [questionName, setQuestionName] = useState("")
@@ -15,8 +16,8 @@ function QuestionCard() {
   const shuffleVariants = (variants, correct) => {
     const shuffledVariants = [...variants]
     for (let i = shuffledVariants.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[shuffledVariants[i], shuffledVariants[j]] = [
+      const j = Math.floor(Math.random() * (i + 1));
+        [shuffledVariants[i], shuffledVariants[j]] = [
         shuffledVariants[j],
         shuffledVariants[i],
       ]
@@ -55,29 +56,47 @@ function QuestionCard() {
   }, [])
 
   const handleAnswerChange = (e) => {
-    const answer = e.target.value
-    setSelectedAnswer(answer)
+    const answer = e.target.value;
+    setSelectedAnswer(answer);
 
     if (answer === correctAnswer) {
-      setStreak(streak + 1)
-      setAnswerResult("Верно!")
-      setResultClass(style.correct)
-      setTimeout(() => {
-        loadNewQuestion()
-        setAnswerResult(null)
-        setResultClass("")
-      }, 500)
-    } else {
-      setStreak(0)
-      setAnswerResult(`Неверно! Правильный ответ: ${correctAnswer}`)
-      setResultClass(style.incorrect)
-      setShowNextButton(true)
-    }
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      setAnswerResult("Верно!");
+      setResultClass(style.correct);
 
-    if (streak + 1 > maxStreak) {
-      setMaxStreak(streak + 1)
+      if (newStreak > maxStreak) {
+        setMaxStreak(newStreak);
+      }
+
+      if (newStreak === 10) {
+        toast(`Серия из ${newStreak} правильных ответов!`, { icon: "👏"});
+      }
+      else if (newStreak === 20) {
+        toast(`Серия из ${newStreak} правильных ответов!`, { icon: "🎉"});
+      }
+      else if (newStreak === 30) {
+        toast(`Серия из ${newStreak} правильных ответов!`, { icon: "🔥"});
+      }
+      else if (newStreak === 40) {
+        toast(`Серия из ${newStreak} правильных ответов!`, { icon: "🚀"});
+      }
+      else if (newStreak === 50) {
+        toast(`Серия из ${newStreak} правильных ответов!`, { icon: "🌟"});
+      }
+      
+      setTimeout(() => {
+        loadNewQuestion();
+        setAnswerResult(null);
+        setResultClass("");
+      }, 500);
+    } else {
+      setStreak(0);
+      setAnswerResult(`Неверно! Правильный ответ: ${correctAnswer}`);
+      setResultClass(style.incorrect);
+      setShowNextButton(true);
     }
-  }
+  };
 
   const handleNextQuestion = () => {
     loadNewQuestion()
@@ -89,6 +108,7 @@ function QuestionCard() {
 
   return (
     <div className={style['card']}>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className={style["max-streak"]}>Макс. серия: {maxStreak}</div>
       <div className={style["streak"]}>Серия: {streak}</div>
       <fieldset className={style["question-card"]}>
