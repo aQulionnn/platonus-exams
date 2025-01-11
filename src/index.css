@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-size: 14px;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -12,4 +14,5 @@ body {
   align-items: center;
   justify-content: center;
   height: 100dvh;
+  background-color: #0b0d15;
 }
