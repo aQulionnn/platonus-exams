@@ -3,7 +3,7 @@ import style from "./QuestionCard.module.css"
 import data from "../../data.json"
 
 function QuestionCard() {
-  const [question, setQuestion] = useState(data[1])
+  const [question, setQuestion] = useState(data[Math.floor(Math.random() * data.length)])
   const [shuffledVariants, setShuffledVariants] = useState([])
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(null)
