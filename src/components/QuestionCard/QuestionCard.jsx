@@ -1,49 +1,61 @@
 import React, { useEffect, useState } from "react"
 import style from "./QuestionCard.module.css"
-import data from "../../data.json"
+import { getQuestion } from "../../services/questionService"
+import toast, { Toaster } from "react-hot-toast"
 
 function QuestionCard() {
-  const [question, setQuestion] = useState(data[1])
-  const [shuffledVariants, setShuffledVariants] = useState([])
+  const [streak, setStreak] = useState(() => {
+    const savedStreak = sessionStorage.getItem('streak')
+    return savedStreak ? parseInt(savedStreak, 10) : 0
+  });
+  const [question, setQuestion] = useState(getQuestion(streak))
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(null)
 
-  const handleClick = (variant) => {
-    setSelected(variant)
-    const isCorrect = variant === question.answer
+  const handleClick = (selected) => {
+    setSelected(selected)
+    const isCorrect = selected === question.answer
     setCorrect(isCorrect)
 
-    if (isCorrect) {
-      setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * data.length)
-        setQuestion(data[randomIndex])
-        setSelected(null)
-        setCorrect(null)
-      }, 500)
+    if (streak === 249) {
+      setStreak(0)
+      toast("Finished", { icon: "🎉" })
+    }
+    else if (selected === question.answer) {
+      setStreak(Math.floor(Math.random() * 250));
+    } 
+    else {
+      setStreak(Math.floor(Math.random() * 250));
     }
   }
 
   useEffect(() => {
-    const shuffleArray = (array) => {
-      const newArray = [...array]
-      for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
-      }
-      return newArray
+    if (correct) {
+      setTimeout(() => {
+        setQuestion(getQuestion(streak))
+        sessionStorage.setItem('streak', streak)
+        setSelected(null)
+        setCorrect(null)
+      }, 150)
     }
-
-    setShuffledVariants(shuffleArray(question.variants))
-  }, [question])
+    else {
+      setTimeout(() => {
+        setQuestion(getQuestion(streak))
+        sessionStorage.setItem('streak', streak)
+        setSelected(null)
+        setCorrect(null)
+      }, 2000)
+    } 
+    
+  }, [streak])
 
   return (
     <div className={style["question-card"]}>
-      <span className={style["question-name"]}>{question.name}</span>
-      {question.image && (
-        <img className={style["question-image"]} src={question.image} />
-      )}
+      <Toaster />
+      <span className={style["question-name"]}>{question.id}. {question.name}</span>
       <div className={style["variant-list"]}>
-        {shuffledVariants.map((variant, index) => {
+        {question.variants.map((variant, index) => {  
+          
           const isCorrectAnswer = variant === question.answer
           const isSelected = variant === selected
 
@@ -53,13 +65,14 @@ function QuestionCard() {
           } else if (correct === false && isCorrectAnswer) {
             borderColor = "#ffd23f"
           }
-
+          
           return (
             <button
               key={index}
               className={style["variant"]}
-              style={{ borderColor: `${borderColor}` }}
-              onClick={() => handleClick(variant)}>
+              style={{ borderColor: `${borderColor}`}}
+              onClick={() => handleClick(variant)}
+            >
               {variant}
             </button>
           )
