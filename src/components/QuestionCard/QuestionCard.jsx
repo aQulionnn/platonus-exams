@@ -22,10 +22,10 @@ function QuestionCard() {
       toast("Finished", { icon: "🎉" })
     }
     else if (selected === question.answer) {
-      setStreak(streak + 1);
+      setStreak(Math.floor(Math.random() * 250));
     } 
     else {
-      setStreak(0);
+      setStreak(Math.floor(Math.random() * 250));
     }
   }
 
@@ -44,7 +44,7 @@ function QuestionCard() {
         sessionStorage.setItem('streak', streak)
         setSelected(null)
         setCorrect(null)
-      }, 1500)
+      }, 2000)
     } 
     
   }, [streak])
