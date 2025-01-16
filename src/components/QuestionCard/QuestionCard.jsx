@@ -6,8 +6,8 @@ import toast, { Toaster } from "react-hot-toast"
 function QuestionCard() {
   const [streak, setStreak] = useState(() => {
     const savedStreak = sessionStorage.getItem('streak')
-    return savedStreak ? parseInt(savedStreak, 10) : 0
-  });
+    return savedStreak ? parseInt(savedStreak, 10) : 105
+  })
   const [question, setQuestion] = useState(getQuestion(streak))
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(null)
@@ -22,10 +22,10 @@ function QuestionCard() {
       toast("Finished", { icon: "🎉" })
     }
     else if (selected === question.answer) {
-      setStreak(Math.floor(Math.random() * 250));
+      setStreak(streak + 1);
     } 
     else {
-      setStreak(Math.floor(Math.random() * 250));
+      setStreak(105);
     }
   }
 
