@@ -1,7 +1,7 @@
-import aks from '../aks.json'
+import electronics from '../electronics.json'
 
 export const getQuestion = (id) => {
-  const question = {...aks[id]}
+  const question = {...electronics[id]}
   question.variants = shuffleArray([...question.variants])
   return question
 }
