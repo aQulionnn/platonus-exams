@@ -7,7 +7,7 @@ function QuestionCard() {
   const [streak, setStreak] = useState(() => {
     const savedStreak = sessionStorage.getItem('streak')
     return savedStreak ? parseInt(savedStreak, 10) : 0
-  });
+  })
   const [question, setQuestion] = useState(getQuestion(streak))
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(null)
@@ -17,15 +17,15 @@ function QuestionCard() {
     const isCorrect = selected === question.answer
     setCorrect(isCorrect)
 
-    if (streak === 249) {
+    if (streak === 179) {
       setStreak(0)
       toast("Finished", { icon: "🎉" })
     }
     else if (selected === question.answer) {
-      setStreak(Math.floor(Math.random() * 250));
+      setStreak(streak + 1);
     } 
     else {
-      setStreak(Math.floor(Math.random() * 250));
+      setStreak(streak + 1);
     }
   }
 
@@ -53,6 +53,7 @@ function QuestionCard() {
     <div className={style["question-card"]}>
       <Toaster />
       <span className={style["question-name"]}>{question.id}. {question.name}</span>
+      {question.image !== "" && <img className={style['question-image']} src={question.image}/>}
       <div className={style["variant-list"]}>
         {question.variants.map((variant, index) => {  
           

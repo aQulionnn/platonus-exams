@@ -5,7 +5,7 @@ import Streak from "./components/Streak/Streak";
 function App() {
   return (
     <div className="App">
-      {/* <Streak streak={10}/> */}
+      {/* <Streak streak={}/> */}
       <QuestionCard />
     </div>
   );
