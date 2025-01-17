@@ -17,7 +17,7 @@ function QuestionCard() {
     const isCorrect = selected === question.answer
     setCorrect(isCorrect)
 
-    if (streak === 0) {
+    if (streak === 179) {
       setStreak(0)
       toast("Finished", { icon: "🎉" })
     }
