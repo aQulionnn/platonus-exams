@@ -16,3 +16,12 @@ body {
   min-height: 100dvh;
   background-color: #0b0d15;
 }
+
+select {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  padding: 2.5px 5px;
+  border-radius: 5px;
+}

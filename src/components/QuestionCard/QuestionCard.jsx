@@ -3,11 +3,8 @@ import style from "./QuestionCard.module.css"
 import { getQuestion } from "../../services/questionService"
 import toast, { Toaster } from "react-hot-toast"
 
-function QuestionCard() {
-  const [streak, setStreak] = useState(() => {
-    const savedStreak = sessionStorage.getItem('streak')
-    return savedStreak ? parseInt(savedStreak, 10) : 0
-  })
+function QuestionCard({selectedOption}) {
+  const [streak, setStreak] = useState(selectedOption - 1)
   const [question, setQuestion] = useState(getQuestion(streak))
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(null)
@@ -18,22 +15,26 @@ function QuestionCard() {
     setCorrect(isCorrect)
 
     if (streak === 179) {
-      setStreak(0)
+      setStreak(selectedOption - 1)
       toast("Finished", { icon: "🎉" })
     }
     else if (selected === question.answer) {
       setStreak(streak + 1);
     } 
     else {
-      setStreak(streak + 1);
+      setStreak(selectedOption - 1);
     }
   }
+
+  useEffect(() => {
+    setStreak(selectedOption - 1);
+    setQuestion(getQuestion(selectedOption - 1));
+  }, [selectedOption]);
 
   useEffect(() => {
     if (correct) {
       setTimeout(() => {
         setQuestion(getQuestion(streak))
-        sessionStorage.setItem('streak', streak)
         setSelected(null)
         setCorrect(null)
       }, 150)
@@ -41,7 +42,6 @@ function QuestionCard() {
     else {
       setTimeout(() => {
         setQuestion(getQuestion(streak))
-        sessionStorage.setItem('streak', streak)
         setSelected(null)
         setCorrect(null)
       }, 2000)
