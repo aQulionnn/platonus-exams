@@ -1,0 +1,26 @@
+.variant {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+
+    border: 1px solid #6c757d;
+    box-shadow: 10px 10px 0 1px #000;
+
+    transition: 0.5s;
+
+    cursor: pointer;
+}
+
+.variant:hover {
+    box-shadow: 10px 10px 0 1px #7b2cbf;
+
+    transform: skewX(-20deg);
+}
+
+.correct {
+    box-shadow: 10px 10px 0 1px #8ac926 !important;
+}
+
+.incorrect {
+    box-shadow: 10px 10px 0 1px #ff0a54 !important;
+}

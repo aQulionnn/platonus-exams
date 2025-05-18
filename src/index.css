@@ -1,27 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
-  font-size: 14px;
-  font-family: 'Roboto Mono', monospace;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100dvh;
-  background-color: #0b0d15;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 
-select {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-
-  padding: 2.5px 5px;
-  border-radius: 5px;
+    background-color: #151F28;
 }

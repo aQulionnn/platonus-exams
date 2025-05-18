@@ -1,0 +1,14 @@
+.question {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 700px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    list-style: none;
+}
