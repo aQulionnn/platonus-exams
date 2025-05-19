@@ -14,13 +14,13 @@ function App() {
 
     return (
         <div className="App">
-            <span style={{
-                position: "absolute",
-                top: "25px",
-                left: "25px",
-                fontSize: "18px",
-                fontWeight: 700
-            }}>1 / 372</span>
+            {/*<span style={{*/}
+            {/*    position: "absolute",*/}
+            {/*    top: "25px",*/}
+            {/*    left: "25px",*/}
+            {/*    fontSize: "18px",*/}
+            {/*    fontWeight: 700*/}
+            {/*}}>1 / 372</span>*/}
             <Question/>
         </div>
     )

@@ -8,16 +8,16 @@ const Pagination = ({id, setId}) => {
                 className={style['left']}
                 onClick={() => setId(id - 1)}
             >
-                LEFT
+                PREV
             </div>
             <div className={style['page']}>
-                <input type="text" onChange={(e) => setId(Number(e.currentTarget.value) - 1)} />
+                <input type="text" onChange={(e) => setId(e.currentTarget.value ? Number(e.currentTarget.value) - 1 : 0)} />
             </div>
             <div
                 className={style['right']}
                 onClick={() => setId(id + 1)}
             >
-                RIGHT
+                NEXT
             </div>
         </nav>
     );
