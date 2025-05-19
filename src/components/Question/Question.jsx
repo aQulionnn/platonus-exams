@@ -3,6 +3,7 @@ import style from './Question.module.css'
 import {useQuestionStore} from "../../store/questionStore"
 import Variant from "../Variant/Variant"
 import { reducer, initialState, init  } from "./questionReducer"
+import Pagination from "../Pagination/Pagination";
 
 const Question = () => {
     const [state, dispatch] = useReducer(reducer, initialState, init )
@@ -61,7 +62,7 @@ const Question = () => {
                 ))}
             </ul>
             <footer>
-                
+                <Pagination id={id} setId={setId} />
             </footer>
         </section>
     );

@@ -14,7 +14,7 @@
 .variant:hover {
     box-shadow: 10px 10px 0 1px #7b2cbf;
 
-    transform: skewX(-20deg);
+    transform: scale(1.05);
 }
 
 .correct {
